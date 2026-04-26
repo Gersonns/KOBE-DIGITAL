@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOBE DIGITAL | Design Agency</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:italic&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070708;
+      --card-bg: #111112;
+      --logo-blue: #0019ff; /* Blue from "kobe" */
+      --accent: #ff6b00;    /* Orange from "digital" */
+      --text-main: #ffffff;
+      --text-dim: #a0a0a0;
+      --white-card: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --- Navigation --- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7, 7, 8, 0.85);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .logo-img {
+      height: 45px; /* Size to keep navigation clean */
+      width: auto;
+    }
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      margin-left: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 10px 20px;
+      border-radius: 30px;
+      transition: 0.3s;
+    }
+    .btn-outline:hover { background: var(--logo-blue); border-color: var(--logo-blue); color: #fff; }
+
+    /* --- Hero Section --- */
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      /* DUAL GLOW: Blue on left, Orange on right */
+      background: radial-gradient(circle at 15% 50%, rgba(0, 25, 255, 0.12) 0%, transparent 40%),
+                  radial-gradient(circle at 85% 50%, rgba(255, 107, 0, 0.12) 0%, transparent 40%);
+    }
+    .tagline {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 0.95;
+      margin: 0;
+      max-width: 950px;
+      letter-spacing: -2px;
+    }
+    .hero h1 span {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      display: block;
+      color: var(--text-main);
+    }
+    .hero-btns { margin-top: 45px; display: flex; gap: 20px; }
+    .btn-pill {
+      background: var(--logo-blue); color: #fff;
+      padding: 16px 40px; border-radius: 40px;
+      text-decoration: none; font-weight: 600;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .btn-pill:hover { transform: translateY(-3px); filter: brightness(1.1); }
+    .btn-dark {
+      background: transparent; color: #fff;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .btn-dark:hover { background: rgba(255,255,255,0.05); }
+
+    /* --- Process Section (White Cards) --- */
+    .process-section { padding: 120px 5%; text-align: center; }
+    .process-container { display: grid; gap: 25px; max-width: 1050px; margin: 60px auto; }
+    .process-card {
+      background: var(--white-card);
+      color: #000;
+      border-radius: 30px;
+      padding: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+    .process-content h3 { font-size: 2.8rem; margin: 0 0 15px; letter-spacing: -1.5px; line-height: 1.1; }
+    .icon-asterisk { font-size: 8rem; color: var(--accent); font-weight: 800; }
+
+    /* --- Services Home Grid --- */
+    .home-services { padding: 100px 5%; }
+    .home-service-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.03);
+      padding: 50px 40px;
+      border-radius: 28px;
+      transition: 0.4s;
+    }
+    .home-service-card:hover { border-color: var(--logo-blue); transform: translateY(-10px); }
+    .home-service-card .icon { color: var(--logo-blue); font-size: 2.5rem; margin-bottom: 25px; display: block; }
+    
+    /* --- Testimonials --- */
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.03);
+      padding: 40px;
+      border-radius: 24px;
+      transition: 0.3s;
+    }
+    .testimonial-card:hover { border-color: var(--accent); }
+    .quote-icon { color: var(--accent); font-family: serif; font-size: 4rem; opacity: 0.6; line-height: 1; margin-bottom: -15px; }
+
+    /* --- Footer --- */
+    footer { padding: 120px 5% 50px; background: #000; border-top: 1px solid #111; }
+    .footer-huge {
+      font-size: clamp(5rem, 20vw, 16rem);
+      font-weight: 800;
+      text-align: center;
+      margin: 0;
+      line-height: 0.8;
+      background: linear-gradient(to right, var(--logo-blue), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -10px;
+    }
+    .footer-bottom { display: flex; justify-content: space-between; margin-top: 60px; color: var(--text-dim); font-size: 0.85rem; }
+
+    /* WhatsApp */
+    .wa-float {
+        position: fixed; bottom: 35px; right: 35px; background: #25D366; 
+        width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 2000; transition: 0.3s;
+    }
+    .wa-float:hover { transform: scale(1.1) rotate(10deg); }
+
+    @media (max-width: 900px) {
+      .process-card { flex-direction: column; padding: 40px; text-align: center; }
+      .process-content h3 { font-size: 2rem; }
+      .icon-asterisk { font-size: 5rem; margin-top: 20px; }
+      .footer-huge { letter-spacing: -2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">
+        <!-- Make sure the logo image is in your folder -->
+        <img src="logo-img.jpg" alt="Kobe Digital Logo" class="logo-img">
+    </a>
+    <div class="nav-links">
+      <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="btn-outline">Contact Us</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="tagline">• Digital Experience Studio</div>
+    <h1>We Transform Ideas <span>into digital reality.</span></h1>
+    <p style="color: var(--text-dim); max-width: 550px; margin-top: 20px; font-size: 1.1rem;">Bespoke design and high-performance development for brands that lead with innovation.</p>
+    <div class="hero-btns">
+      <a href="contact.html" class="btn-pill">Start a Project</a>
+      <a href="portfolio.html" class="btn-pill btn-dark">Our Work</a>
+    </div>
+  </header>
+
+  <section class="home-services">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px;">
+        <h2 style="font-size: 3rem; margin: 0; line-height: 1;">Our <span style="color: var(--logo-blue);">Core</span> Expertise</h2>
+        <a href="services.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Browse All Services ↗</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div class="home-service-card">
+            <span class="icon">✦</span>
+            <h3>Strategic Branding</h3>
+            <p>Crafting visual identities that resonate and scale with your business growth.</p>
+        </div>
+        <div class="home-service-card">
+            <span class="icon" style="color: var(--accent);">✱</span>
+            <h3>UI/UX Design</h3>
+            <p>Human-centered design focusing on conversion, usability, and modern aesthetics.</p>
+        </div>
+        <div class="home-service-card">
+            <span class="icon">❖</span>
+            <h3>Custom Development</h3>
+            <p>Scalable, secure, and fast websites built with the latest modern frameworks.</p>
+        </div>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="process-container">
+      <div class="process-card">
+        <div class="process-content">
+          <div class="tagline" style="color: #666; border-color: #eee;">Step 01</div>
+          <h3>Share Your Vision & Goals</h3>
+          <p>We deep-dive into your requirements to create a blueprint for digital success.</p>
+        </div>
+        <div class="icon-asterisk">✱</div>
+      </div>
+      <div class="process-card" style="background: var(--logo-blue); color: #fff;">
+          <div class="icon-asterisk" style="color: var(--accent);">✦</div>
+          <div class="process-content" style="text-align: right;">
+            <div class="tagline" style="color: #fff; border-color: rgba(255,255,255,0.3);">Step 02</div>
+            <h3>Concept to Polished Design</h3>
+            <p>Execution of high-fidelity designs that align with your brand's unique identity.</p>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <!-- The HUGE text now uses a Blue-to-Orange gradient based on your logo -->
+    <h1 class="footer-huge">kobe</h1>
+    
+    <div class="footer-bottom">
+      <div>&copy; 2026 KOBE DIGITAL LTD.</div>
+      <div>MAPUTO, MOZAMBIQUE</div>
+      <div style="color: var(--accent);">hello@kobe.digital</div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; opacity: 0.4;">
+        <img src="https://img.icons8.com/color/48/visa.png" style="height: 25px; margin: 0 10px; filter: grayscale(1);">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/M-Pesa_logo-01.svg" style="height: 25px; margin: 0 10px; filter: grayscale(1);">
+        <span style="font-size: 0.7rem; font-weight: 800; vertical-align: middle;">E-MOLA</span>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/258874374250?" class="wa-float" target="_blank">
+    <img src="https://img.icons8.com/material-outlined/32/ffffff/whatsapp.png" alt="WhatsApp">
+  </a>
+
+</body>
+</html>
